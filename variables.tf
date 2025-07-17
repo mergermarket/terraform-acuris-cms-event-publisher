@@ -28,3 +28,9 @@ variable "cms_name" {
   description = "The name of the CMS creating the infrastructure"
   type        = string
 }
+
+variable "global_secondary_index" {
+  description = "The configuration for the global secondary index on the snapshots DynamoDB table"
+  type        = map(any)
+  default     = null
+}

@@ -24,6 +24,19 @@ resource "aws_dynamodb_table" "events" {
     Environment = var.env
   }
 
+  dynamic "global_secondary_index" {
+    for_each = var.global_secondary_index != null ? [var.global_secondary_index] : []
+    content {
+      name               = global_secondary_index.value["name"]
+      hash_key           = global_secondary_index.value["hash_key"]
+      range_key          = global_secondary_index.value["range_key"]
+      read_capacity      = global_secondary_index.value["read_capacity"]
+      write_capacity     = global_secondary_index.value["write_capacity"]
+      projection_type    = global_secondary_index.value["projection_type"]
+      non_key_attributes = global_secondary_index.value["non_key_attributes"]
+    }
+  }
+
   # global_secondary_index {
   #   name               = "${var.events_table}-index"
   #   hash_key           = "aggregateId"
