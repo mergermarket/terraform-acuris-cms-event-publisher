@@ -30,8 +30,8 @@ resource "aws_dynamodb_table" "events" {
       name               = global_secondary_index.value["name"]
       hash_key           = global_secondary_index.value["hash_key"]
       range_key          = global_secondary_index.value["range_key"]
-      read_capacity      = global_secondary_index.value["read_capacity"]
-      write_capacity     = global_secondary_index.value["write_capacity"]
+      read_capacity      = global_secondary_index.value["read_capacity"] != null ? global_secondary_index.value["read_capacity"] : var.snapshots_read_capacity
+      write_capacity     = global_secondary_index.value["write_capacity"] != null ? global_secondary_index.value["write_capacity"] : var.snapshots_write_capacity
       projection_type    = global_secondary_index.value["projection_type"]
       non_key_attributes = global_secondary_index.value["non_key_attributes"]
     }
@@ -68,7 +68,7 @@ resource "aws_dynamodb_table" "snapshots" {
     name = "id"
     type = "S"
   }
-  
+
   tags = {
     Environment = var.env
   }
