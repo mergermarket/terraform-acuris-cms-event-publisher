@@ -31,6 +31,14 @@ variable "cms_name" {
 
 variable "global_secondary_index" {
   description = "The configuration for the global secondary index on the snapshots DynamoDB table"
-  type        = map(any)
-  default     = null
+  type = object({
+   name               = string
+   hash_key           = string
+   range_key          = string
+   read_capacity      = optional(number)
+   write_capacity     = optional(number)
+   projection_type    = string
+   non_key_attributes = list(string)
+  })
+  default = null
 }
