@@ -37,6 +37,7 @@ module "cms_event_publisher" {
 | cms_name | string | Yes | - | Unique CMS identifier (lowercase) |
 | snapshots_read_capacity | number | No | 1 | Read capacity units for snapshots table |
 | snapshots_write_capacity | number | No | 1 | Write capacity units for snapshots table |
+| lambda_runtime | string | Yes | - | Set the runtime for the cms lambda (e.g. nodejs12.x
 
 ## Outputs
 | Output | Description |

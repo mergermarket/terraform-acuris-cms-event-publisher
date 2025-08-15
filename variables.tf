@@ -34,3 +34,7 @@ variable "global_secondary_index" {
   type        = any
   default     = null
 }
+variable "lambda_runtime" {
+  description = "The runtime for the Lambda function"
+  type        = string
+}

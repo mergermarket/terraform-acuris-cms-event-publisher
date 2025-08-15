@@ -169,7 +169,7 @@ resource "aws_lambda_function" "cms_publish_lambda" {
   function_name = "${var.env}-${var.cms_name}-cms-publish-lambda-function"
   role          = aws_iam_role.iam_for_publish_lambda.arn
   handler       = "publishEvent.handleEvents"
-  runtime       = "nodejs12.x"
+  runtime       = var.lambda_runtime
 
   environment {
     variables = {
